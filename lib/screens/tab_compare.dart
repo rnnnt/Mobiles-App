@@ -19,7 +19,7 @@ class _TabCompareState extends State<TabCompare> {
   List<Country> filtered2 = [];
   final TextEditingController controller1 = TextEditingController();
   final TextEditingController controller2 = TextEditingController();
-  //***** */
+  
     void resetComparison() {
     setState(() {
       selectedCountry1 = null;
@@ -167,16 +167,16 @@ class _TabCompareState extends State<TabCompare> {
                         const SizedBox(height: 16),
 
             Align(
-  alignment: Alignment.centerRight,
-  child: ElevatedButton.icon(
-    onPressed: resetComparison,
-    icon: const Icon(Icons.refresh),
-    label: const Text("Nueva comparación"),
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.blue,
-      foregroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+              alignment: Alignment.centerRight,
+              child: ElevatedButton.icon(
+              onPressed: resetComparison,
+              icon: const Icon(Icons.refresh),
+              label: const Text("Nueva comparación"),
+              style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
       ),
     ),
   ),
