@@ -102,7 +102,6 @@ class _TabCompareState extends State<TabCompare> {
                     Text('Zona horaria: ${country.timezones.join(', ')}'),
                     Text('Código de país: ${country.ccn3}'),
                     Text('Día de inicio de la semana: ${country.startOfWeek}'),
-                    Text('Bloques de región: ${country.regionBlocs}'),
                     Text('Estado: ${country.status}'),
                     Text('Independiente: ${country.independent ? 'Sí' : 'No'}'),
                   ],
