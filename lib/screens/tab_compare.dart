@@ -19,17 +19,6 @@ class _TabCompareState extends State<TabCompare> {
   List<Country> filtered2 = [];
   final TextEditingController controller1 = TextEditingController();
   final TextEditingController controller2 = TextEditingController();
-  
-    void resetComparison() {
-    setState(() {
-      selectedCountry1 = null;
-      selectedCountry2 = null;
-      controller1.clear();
-      controller2.clear();
-      filtered1 = allCountries;
-      filtered2 = allCountries;
-    });
-  }
 
   @override
   void initState() {
@@ -164,22 +153,7 @@ class _TabCompareState extends State<TabCompare> {
                           ),
                         ),
                         const SizedBox(height: 16),
-
-            Align(
-              alignment: Alignment.centerRight,
-              child: ElevatedButton.icon(
-              onPressed: resetComparison,
-              icon: const Icon(Icons.refresh),
-              label: const Text("Nueva comparación"),
-              style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-      ),
-    ),
-  ),
-),
+                        
 
 const SizedBox(height: 24),
 
@@ -300,6 +274,28 @@ const SizedBox(height: 24),
           ],
         ),
       ),
+      bottomNavigationBar: Padding(
+      padding: const EdgeInsets.all(16),
+      child: ElevatedButton.icon(
+        onPressed: () {
+          setState(() {
+            selectedCountry1 = null;
+            selectedCountry2 = null;
+            controller1.clear();
+            controller2.clear();
+          });
+        },
+        icon: const Icon(Icons.refresh), 
+        label: const Text("Nueva comparación", style: TextStyle(color: Colors.white),),
+
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          textStyle: const TextStyle(fontSize: 18),
+          backgroundColor: Colors.blueAccent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ))),
     );
   }
 }
