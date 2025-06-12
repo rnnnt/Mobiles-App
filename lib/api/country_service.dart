@@ -4,7 +4,7 @@ import 'country_model.dart';
 
 class CountryService {
   static Future<List<Country>> fetchCountries() async {
-    final response = await http.get(Uri.parse('https://restcountries.com/v3.1/all?fields=name,flags,region,subregion,capital,population,independent'));
+    final response = await http.get(Uri.parse('https://restcountries.com/v3.1/all?fields=name,flags,region,subregion,capital,population,independent,area,languages,currencies'));
     if (response.statusCode == 200) {
       List data = json.decode(response.body);
       return data.map((json) => Country.fromJson(json)).toList();

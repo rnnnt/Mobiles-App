@@ -39,6 +39,9 @@ class _TabCompareState extends State<TabCompare> {
       filtered1 = allCountries
         .where((c) => c.name.toLowerCase().contains(controller1.text.toLowerCase()))
         .toList();
+         if (selectedCountry1 != null && controller1.text != selectedCountry1!.name) {
+      selectedCountry1 = null;
+      }
     });
   }
 
@@ -47,6 +50,9 @@ class _TabCompareState extends State<TabCompare> {
       filtered2 = allCountries
         .where((c) => c.name.toLowerCase().contains(controller2.text.toLowerCase()))
         .toList();
+          if (selectedCountry2 != null && controller2.text != selectedCountry2!.name) {
+      selectedCountry2 = null;
+      }
     });
   }
 
@@ -106,56 +112,48 @@ class _TabCompareState extends State<TabCompare> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-    backgroundColor: Colors.white,
-    body: allCountries.isEmpty
-      ? const Center(child: CircularProgressIndicator())
-      : SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Stack(
-                    clipBehavior: Clip.none,
+      backgroundColor: Colors.white,
+      body: allCountries.isEmpty
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                        SizedBox(
-                          height: 90,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 20,
-                                  color: Colors.black.withOpacity(0.14),
-                                  offset: const Offset(0, 4),
-                                  spreadRadius: 0.0,
-                                ),
-                              ]
-                            ),
-                            child: TextField(
-                              controller: controller1,
-                              decoration: InputDecoration(
-                                hintText: 'Buscar país 1',
-                                hintStyle: const TextStyle(fontSize: 15, color: Colors.grey),
-                                filled: true,
-                                fillColor: Colors.white,
-                                contentPadding: const EdgeInsets.all(15),
-                                prefixIcon: Padding(
-                                  padding: const EdgeInsets.all(12),
-                                  child: SvgPicture.asset('assets/icons/Search.svg'),
-                                ),
-                                border: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                                  borderSide: BorderSide.none,
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 20,
+                                    color: Colors.black.withOpacity(0.14),
+                                    offset: const Offset(0, 4),
+                                  ),
+                                ],
+                              ),
+                              child: TextField(
+                                controller: controller1,
+                                decoration: InputDecoration(
+                                  hintText: 'Buscar país 1',
+                                  hintStyle: const TextStyle(fontSize: 15, color: Colors.grey),
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  contentPadding: const EdgeInsets.all(15),
+                                  prefixIcon: Padding(
+                                    padding: const EdgeInsets.all(12),
+                                    child: SvgPicture.asset('assets/icons/Search.svg'),
+                                  ),
+                                  border: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                                    borderSide: BorderSide.none,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        
-
-const SizedBox(height: 24),
 
                         if (controller1.text.isNotEmpty && selectedCountry1 == null)
                           Positioned(
@@ -189,44 +187,39 @@ const SizedBox(height: 24),
                     ],
                   ),
                 ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      SizedBox(
-                        height: 90,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 20,
-                                color: Colors.black.withOpacity(0.14),
-                                offset: const Offset(0, 4),
-                                spreadRadius: 0.0,
+                 const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 20,
+                                    color: Colors.black.withOpacity(0.14),
+                                    offset: const Offset(0, 4),
+                                  ),
+                                ],
                               ),
-                            ]
-                          ),
-                          child: TextField(
-                            controller: controller2,
-                            decoration: InputDecoration(
-                              hintText: 'Buscar país 2',
-                              hintStyle: const TextStyle(fontSize: 15, color: Colors.grey),
-                              filled: true,
-                              fillColor: Colors.white,
-                              contentPadding: const EdgeInsets.all(15),
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: SvgPicture.asset('assets/icons/Search.svg'),
-                                ),
-                              border: const OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(15)),
-                                borderSide: BorderSide.none,
+                              child: TextField(
+                                controller: controller2,
+                                decoration: InputDecoration(
+                                  hintText: 'Buscar país 2',
+                                  hintStyle: const TextStyle(fontSize: 15, color: Colors.grey),
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  contentPadding: const EdgeInsets.all(15),
+                                  prefixIcon: Padding(
+                                    padding: const EdgeInsets.all(12),
+                                    child: SvgPicture.asset('assets/icons/Search.svg'),
+                                  ),
+                                  border: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                                    borderSide: BorderSide.none,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
                         if (controller2.text.isNotEmpty && selectedCountry2 == null)
                           Positioned(
                             top: 60,
@@ -274,28 +267,6 @@ const SizedBox(height: 24),
           ],
         ),
       ),
-      bottomNavigationBar: Padding(
-      padding: const EdgeInsets.all(16),
-      child: ElevatedButton.icon(
-        onPressed: () {
-          setState(() {
-            selectedCountry1 = null;
-            selectedCountry2 = null;
-            controller1.clear();
-            controller2.clear();
-          });
-        },
-        icon: const Icon(Icons.refresh), 
-        label: const Text("Nueva comparación", style: TextStyle(color: Colors.white),),
-
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          textStyle: const TextStyle(fontSize: 18),
-          backgroundColor: Colors.blueAccent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ))),
     );
   }
 }
