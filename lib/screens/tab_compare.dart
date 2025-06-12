@@ -1,7 +1,6 @@
 import 'package:app0/api/country_model.dart';
 import 'package:app0/api/country_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class TabCompare extends StatefulWidget {
   const TabCompare({super.key});
@@ -93,11 +92,6 @@ class _TabCompareState extends State<TabCompare> {
                     Text('Idioma(s): ${country.languages.join(', ')}'),
                     Text('Moneda: ${country.currency}'),
                     Text('Símbolo: ${country.currencySymbol}'),
-                    Text('Gentilicio: ${country.demonym}'),
-                    Text('Zona horaria: ${country.timezones.join(', ')}'),
-                    Text('Código de país: ${country.ccn3}'),
-                    Text('Día de inicio de la semana: ${country.startOfWeek}'),
-                    Text('Estado: ${country.status}'),
                     Text('Independiente: ${country.independent ? 'Sí' : 'No'}'),
                   ],
               )
@@ -113,160 +107,109 @@ class _TabCompareState extends State<TabCompare> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: allCountries.isEmpty
-          ? const Center(child: CircularProgressIndicator())
-          : SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-              child: Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      appBar: AppBar(
+        title: Text('Selecciona los países a comparar', style: TextStyle(fontSize: 20)),
+        backgroundColor: Colors.white,
+        ),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: Row(
+          children: [
+            Expanded(
+              child:Column(
                     children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 20,
-                                    color: Colors.black.withOpacity(0.14),
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
+                      TextField(
+                        controller: controller1,
+                        decoration: InputDecoration(
+                          labelText: 'Buscar País 1',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      if (controller1.text.isNotEmpty && selectedCountry1 == null)
+                        Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFE3F2FD),
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 8,
+                                color: Colors.black.withOpacity(0.08),
                               ),
-                              child: TextField(
-                                controller: controller1,
-                                decoration: InputDecoration(
-                                  hintText: 'Buscar país 1',
-                                  hintStyle: const TextStyle(fontSize: 15, color: Colors.grey),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  contentPadding: const EdgeInsets.all(15),
-                                  prefixIcon: Padding(
-                                    padding: const EdgeInsets.all(12),
-                                    child: SvgPicture.asset('assets/icons/Search.svg'),
-                                  ),
-                                  border: const OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                ),
-                              ),
-                            ),
-
-                        if (controller1.text.isNotEmpty && selectedCountry1 == null)
-                          Positioned(
-                            top: 60,
-                            left: 0,
-                            right: 0,
-                            child: Material(
-                              color: const Color(0xFFE3F2FD),
-                              elevation: 8,
-                              borderRadius: BorderRadius.circular(15),
-                              child: SizedBox(
-                                height: 150,
-                                child: ListView(
-                                  shrinkWrap: true,
-                                  children: filtered1
-                                      .map((c) => ListTile(
-                                            leading: Image.network(c.flagUrl, width: 40, height: 30, fit: BoxFit.cover),
-                                            title: Text(c.name),
-                                            onTap: () {
-                                              setState(() {
-                                                selectedCountry1 = c;
-                                                controller1.text = c.name;
-                                              });
-                                            },
-                                          ))
-                                      .toList(),
-                                ),
-                              ),
-                            ),
+                            ],
                           ),
+                          constraints: const BoxConstraints(maxHeight: 180),
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: filtered1
+                                .map((c) => ListTile(
+                                      leading: Image.network(c.flagUrl, width: 32, height: 24, fit: BoxFit.cover),
+                                      title: Text(c.name),
+                                      onTap: () {
+                                        setState(() {
+                                          selectedCountry1 = c;
+                                          controller1.text = c.name;
+                                        });
+                                      },
+                                    ))
+                                .toList(),
+                          ),
+                        ),                      
+                    Expanded(child: countryCard(selectedCountry1)),
                     ],
                   ),
-                ),
-                 const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 20,
-                                    color: Colors.black.withOpacity(0.14),
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
-                              ),
-                              child: TextField(
-                                controller: controller2,
-                                decoration: InputDecoration(
-                                  hintText: 'Buscar país 2',
-                                  hintStyle: const TextStyle(fontSize: 15, color: Colors.grey),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  contentPadding: const EdgeInsets.all(15),
-                                  prefixIcon: Padding(
-                                    padding: const EdgeInsets.all(12),
-                                    child: SvgPicture.asset('assets/icons/Search.svg'),
-                                  ),
-                                  border: const OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                ),
-                              ),
-                            ),
-                        if (controller2.text.isNotEmpty && selectedCountry2 == null)
-                          Positioned(
-                            top: 60,
-                            left: 0,
-                            right: 0,
-                            child: Material(
-                              color: const Color(0xFFE3F2FD),
-                              elevation: 8,
-                              borderRadius: BorderRadius.circular(15),
-                              child: SizedBox(
-                                height: 150,
-                                child: ListView(
-                                  shrinkWrap: true,
-                                  children: filtered2
-                                      .map((c) => ListTile(
-                                            leading: Image.network(c.flagUrl, width: 40, height: 30, fit: BoxFit.cover),
-                                            title: Text(c.name),
-                                            onTap: () {
-                                              setState(() {
-                                                selectedCountry2 = c;
-                                                controller2.text = c.name;
-                                              });
-                                            },
-                                          ))
-                                      .toList(),
-                                ),
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 24),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(child: countryCard(selectedCountry1)),
-                Expanded(child: countryCard(selectedCountry2)),
-              ],
+                   
 
-            ),
+              ),
+              SizedBox(width: 20),
+              Expanded(
+              child:Column(
+                    children: [
+                      TextField(
+                        controller: controller2,
+                        decoration: InputDecoration(
+                          labelText: 'Buscar País 2',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      if (controller2.text.isNotEmpty && selectedCountry2 == null)
+                        Container(
+                          margin: const EdgeInsets.only(top: 4),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFE3F2FD),
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 8,
+                                color: Colors.black.withOpacity(0.08),
+                              ),
+                            ],
+                          ),
+                          constraints: const BoxConstraints(maxHeight: 180),
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: filtered2
+                                .map((c) => ListTile(
+                                      leading: Image.network(c.flagUrl, width: 32, height: 24, fit: BoxFit.cover),
+                                      title: Text(c.name),
+                                      onTap: () {
+                                        setState(() {
+                                          selectedCountry2 = c;
+                                          controller2.text = c.name;
+                                        });
+                                      },
+                                    ))
+                                .toList(),
+                          ),
+                        ),                      
+                    Expanded(child: countryCard(selectedCountry2))
+                    ],
+                  ), 
+              ),
             
-          ],
-        ),
-      ),
-    );
-  }
+              ],
+          )
+        )
+      );  
+    }
 }
