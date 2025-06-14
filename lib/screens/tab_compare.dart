@@ -110,6 +110,7 @@ class _TabCompareState extends State<TabCompare> {
       appBar: AppBar(
         title: Text('Selecciona los países a comparar', style: TextStyle(fontSize: 20)),
         backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
         ),
       body: Padding(
         padding: EdgeInsets.all(16),

@@ -16,14 +16,15 @@ class _BottomNavState extends State<BottomNav> {
   int _currentIndex = 0;
   final List<Map<String, dynamic>> _page = [
     {'page': TabHome(), 'text': 'Inicio', 'color':0xff009688,'icon': Icons.home_rounded},
-    {'page': TabFavorite(), 'text': 'Favoritos', 'color':0xffd19402, 'icon': Icons.favorite}, //change color to teal
-    {'page': TabCompare(), 'text': 'Comparar', 'color':0xff003366, 'icon': Icons.compare}, //change color to navy blue
+    {'page': TabFavorite(), 'text': 'Favoritos', 'color':0xffd19402, 'icon': Icons.favorite}, 
+    {'page': TabCompare(), 'text': 'Comparar', 'color':0xff003366, 'icon': Icons.compare}, 
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(_page[_currentIndex]['text'], 
         style: TextStyle(
           fontSize: 30,

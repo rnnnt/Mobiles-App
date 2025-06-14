@@ -41,7 +41,6 @@ class TabHome extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         children: [

@@ -31,8 +31,20 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 79, 209, 181),
-      body: Center(
+      body: Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFF0EEE9C), // 
+            Color(0xFF1E6E8E), // azul oscuro
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Center(
         child: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(32),
@@ -51,14 +63,14 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.lock_outline, size: 64, color: Colors.black),
+                Icon(Icons.lock_outline, size: 64, color: Color.fromARGB(255, 30, 110, 142)),
                 const SizedBox(height: 16),
                 Text(
                   'Bienvenido',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 54, 179, 148),
+                    color: Color.fromARGB(255, 30, 110, 142),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -66,7 +78,53 @@ class _LoginScreenState extends State<LoginScreen> {
                   'Inicia sesión para continuar',
                   style: TextStyle(fontSize: 16, color: Colors.grey[700]),
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 24),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 30, 110, 142),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Text(
+                          'Iniciar sesión',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => RegisterScreen()),
+                            );
+                          },
+                          child: const Text(
+                            'Registrarse',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
                 TextField(
                   controller: emailController,
                   decoration: InputDecoration(
@@ -104,23 +162,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      backgroundColor: const Color.fromARGB(255, 54, 179, 148),
+                      backgroundColor: Color.fromARGB(255, 30, 110, 142),
                     ),
                     child: const Text(
                       'Iniciar sesión',
-                      style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => RegisterScreen()),
-                    );
-                  },
-                  child: const Text('¿No tienes cuenta? Regístrate aquí', 
-                    style: TextStyle(color: Color.fromARGB(255, 79, 133, 117), fontSize: 16),
                   ),
                 ),
                 if (error.isNotEmpty)
@@ -137,6 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
+    ),
     );
   }
 }

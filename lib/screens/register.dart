@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:travelin/screens/login.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -19,7 +20,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
-      Navigator.pop(context); // Vuelve al login al registrar
+      Navigator.pop(context); 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('¡Usuario registrado!')),
       );
@@ -33,8 +34,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 90, 189, 130),
-      body: Center(
+      body: Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFF0EEE9C), 
+            Color(0xFF1AA29C), 
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Center(
         child: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(32),
@@ -53,14 +66,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.person_add_alt_1, size: 64, color: const Color.fromARGB(255, 0, 0, 0)),
+                Icon(Icons.person_add_alt_1, size: 64, color: Color(0xFF1AA29C)),
                 const SizedBox(height: 16),
                 Text(
                   'Crear cuenta',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: const Color.fromARGB(255, 56, 142, 100),
+                    color: Color(0xFF1AA29C),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -68,7 +81,54 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   'Regístrate para continuar',
                   style: TextStyle(fontSize: 16, color: Colors.grey[700]),
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 24),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => LoginScreen()),
+                            );
+                          },
+                          child: const Text(
+                            'Iniciar sesión',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 18),
+                        decoration: BoxDecoration(
+                          color: Color(0xFF1AA29C),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Text(
+                          'Registrarse',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
                 TextField(
                   controller: emailController,
                   decoration: InputDecoration(
@@ -106,21 +166,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      backgroundColor: const Color.fromARGB(255, 56, 142, 110),
+                      backgroundColor: Color(0xFF1AA29C),
                     ),
                     child: const Text(
                       'Registrar',
                       style: TextStyle(fontSize: 18,
                       color: Colors.white),
                     ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('¿Ya tienes cuenta? Inicia sesión', 
-                    style: TextStyle(color: Color.fromARGB(255, 103, 147, 106), fontSize: 16),
                   ),
                 ),
                 if (error.isNotEmpty)
@@ -136,6 +188,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
         ),
+      ),
       ),
     );
   }

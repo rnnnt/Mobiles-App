@@ -39,7 +39,8 @@ class MainApp extends StatelessWidget {
         
       },
       initialRoute: '/',
-      // Cambia la ruta inicial a la pantalla de introducción
     );
   }
 }
+
+// No leí la rúbrica :(
