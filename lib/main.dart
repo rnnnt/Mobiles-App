@@ -1,14 +1,21 @@
-import 'package:app0/screens/africa.dart';
-import 'package:app0/screens/asia.dart';
-import 'package:app0/screens/bottom_nav.dart';
-import 'package:app0/screens/oceania.dart';
-import 'package:app0/screens/southAmerica.dart';
-import 'package:app0/screens/north_america.dart';
-import 'package:app0/screens/europe.dart';
+import 'package:travelin/screens/africa.dart';
+import 'package:travelin/screens/asia.dart';
+import 'package:travelin/screens/bottom_nav.dart';
+import 'package:travelin/screens/login.dart';
+import 'package:travelin/screens/oceania.dart';
+import 'package:travelin/screens/southAmerica.dart';
+import 'package:travelin/screens/north_america.dart';
+import 'package:travelin/screens/europe.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MainApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -18,10 +25,11 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'App0',
+      title: 'Travelin',
       
       routes: {
-        '/': (context) => BottomNav(),
+        '/': (context) => LoginScreen(),
+        '/bottomNav': (context) => BottomNav(),
         '/northAmerica': (context) => NorthAmerica(),
         '/southAmerica': (context) => SouthAmerica(),
         '/europe': (context) => Europe(),

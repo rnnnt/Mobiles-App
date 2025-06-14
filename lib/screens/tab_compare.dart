@@ -1,5 +1,5 @@
-import 'package:app0/api/country_model.dart';
-import 'package:app0/api/country_service.dart';
+import 'package:travelin/api/country_model.dart';
+import 'package:travelin/api/country_service.dart';
 import 'package:flutter/material.dart';
 
 class TabCompare extends StatefulWidget {

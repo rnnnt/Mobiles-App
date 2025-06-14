@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1449629575",
+    "project_id": "aplicacionesmovilesusm",
+    "storage_bucket": "aplicacionesmovilesusm.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1449629575:android:42894ef4a80d9470ed6522",
+        "android_client_info": {
+          "package_name": "com.example.app0"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_ci9BronQ7OgaIqCWHNiA8GcSxN81rZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app0/api/country_favorite.dart';
+import 'package:travelin/api/country_favorite.dart';
 
 class TabFavorite extends StatelessWidget {
   const TabFavorite({super.key});

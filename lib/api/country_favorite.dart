@@ -1,4 +1,4 @@
-import 'package:app0/api/country_model.dart';
+import 'package:travelin/api/country_model.dart';
 
 class CountryFavorites {
   static final List<Country> favorites = [];

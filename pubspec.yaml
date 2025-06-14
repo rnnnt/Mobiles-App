@@ -1,5 +1,5 @@
-name: app0
-description: "A USM Flutter project."
+name: travelin
+description: "A aplication mobile project"
 publish_to: 'none'
 version: 0.1.0
 
@@ -10,6 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^1.4.0
+  firebase_core: ^2.30.0
+  firebase_auth: ^4.17.4     # Si usarás autenticación
+  cloud_firestore: ^4.0.0     # Si usarás Firestore
 
 dev_dependencies:
   flutter_test:

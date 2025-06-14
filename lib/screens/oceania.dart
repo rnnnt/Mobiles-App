@@ -1,7 +1,7 @@
-import 'package:app0/api/country_favorite.dart';
+import 'package:travelin/api/country_favorite.dart';
 import 'package:flutter/material.dart';
-import 'package:app0/api/country_model.dart';
-import 'package:app0/api/country_service.dart';
+import 'package:travelin/api/country_model.dart';
+import 'package:travelin/api/country_service.dart';
 
 class Oceania extends StatefulWidget {
   const Oceania({super.key});

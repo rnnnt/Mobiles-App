@@ -1,6 +1,7 @@
-import 'package:app0/screens/tab_favorite.dart';
-import 'package:app0/screens/tab_home.dart';
-import 'package:app0/screens/tab_compare.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:travelin/screens/tab_favorite.dart';
+import 'package:travelin/screens/tab_home.dart';
+import 'package:travelin/screens/tab_compare.dart';
 import 'package:flutter/material.dart';
 
 class BottomNav extends StatefulWidget {
@@ -37,6 +38,18 @@ class _BottomNavState extends State<BottomNav> {
             bottom: Radius.circular(50)
           ),
         ),
+        actions: [ // Botón de cerrar sesión
+          IconButton(
+            icon: Icon(Icons.logout, color: Colors.red),
+            iconSize: 30,
+            tooltip: 'Cerrar sesión',
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.pushReplacementNamed(context, '/');
+            },
+          ),
+          SizedBox(width: 19) // Espacio entre el botón y el borde dereccho
+        ],
       ),
       body: _page[_currentIndex]['page'],
       bottomNavigationBar: ClipRRect(
